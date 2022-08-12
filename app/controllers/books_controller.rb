@@ -20,6 +20,8 @@ class BooksController < ApplicationController
   end
 
   def show
+    # 各項目のデータが呼び出されるようにするためidの取得
+    @book = Book.find(params[:id])
   end
 
   def edit

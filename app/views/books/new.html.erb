@@ -1,25 +1,24 @@
-<h1>Books#new</h1>
-<p>Find me in app/views/books/new.html.erb</p>
-
 <h2>Bookmモデルの新規投稿</h2>
-<h3>indexの下部分に組み込まれる？</h3>
-<h3>このviewは必要ない？</h3>
-<h3>念のためindexと同じ記述を</h3>
+<!--<h3>indexの下部分に組み込まれる？</h3>-->
+<!--<h3>このviewは必要ない？</h3>-->
+<!--<h3>念のためindexと同じ記述を</h3>-->
 
 
 <h1>Books</h1>
 
-<h3>全体へのTitleとBodyがほしい<br>
-ここへ記述でいいんだろうか？</h3>
+<h3>Title</h3>
+<h3>Body</h3>
 
 <% @books.each do |book| %>
 <!--titleっていう全体の表題があって、それぞれへ表題はなし-->
-  <!--多分それぞれになるから、これはコメントアウトで
-  <p>タイトル</p>
-  カリキュラム３章では、<p>タグでタイトルと<span>タグで内容記述してる-->
+<!--カリキュラム３章では、<p>タグでタイトルと<span>タグで内容記述してる-->
   <p><%= book.title %></p>
   <p><%= book.body %></p>
+  <p><%= link_to 'Show',"/books/#{book.id}" %></p>
+  <p><%= link_to 'Edit',"/books/#{book.id}" %></p> <!--editのURLへリンクを変更する-->
+  <p><%= link_to 'Destroy',"/books/#{book.id}" %></p> <!--destroyのリンクにする-->
 <% end %>
+
 
 
 <!--新規投稿newのビューと同様の記述-->

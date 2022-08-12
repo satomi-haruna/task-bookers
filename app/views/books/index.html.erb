@@ -1,23 +1,21 @@
-<h1>Books#index</h1>
-
 <h2>Bookモデルの一覧画面</h2>
-<p>TitleとかBodyとかある一覧画面と<br>
-新規投稿画面になるのでは<br>
-newとどちらを使用するか分からないから、newと同じフォームを書いておこう</p>
+<!--一覧画面と新規投稿画面になるのでは<br>-->
+<!--newとどちらを使用するか分からないから、newと同じフォームを書いておこう</p>-->
 
 
 <h1>Books</h1>
 
-<h3>全体へのTitleとBodyがほしい<br>
-ここへ記述でいいんだろうか？</h3>
+<h3>Title</h3>
+<h3>Body</h3>
 
 <% @books.each do |book| %>
 <!--titleっていう全体の表題があって、それぞれへ表題はなし-->
-  <!--多分それぞれになるから、これはコメントアウトで
-  <p>タイトル</p>
-  カリキュラム３章では、<p>タグでタイトルと<span>タグで内容記述してる-->
+<!--カリキュラム３章では、<p>タグでタイトルと<span>タグで内容記述してる-->
   <p><%= book.title %></p>
   <p><%= book.body %></p>
+  <p><%= link_to 'Show',"/books/#{book.id}" %></p>
+  <p><%= link_to 'Edit',"/books/#{book.id}" %></p> <!--editのURLへリンクを変更する-->
+  <p><%= link_to 'Destroy',"/books/#{book.id}" %></p> <!--destroyのリンクにする-->
 <% end %>
 
 

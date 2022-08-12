@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   get 'books/new'
 
   get 'books' => 'books#index'
+# 各項目から詳細画面へのルーティング
+  get 'books/:id' => 'books#show'
 
-  get 'books/show'
   get 'books/edit'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
