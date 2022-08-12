@@ -1,7 +1,36 @@
 <h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
 
 <h2>Bookモデルの一覧画面</h2>
-<h3>Books</h3>
 <p>TitleとかBodyとかある一覧画面と<br>
-新規投稿画面になるのでは</p>
+新規投稿画面になるのでは<br>
+newとどちらを使用するか分からないから、newと同じフォームを書いておこう</p>
+
+
+<h1>Books</h1>
+
+<h3>全体へのTitleとBodyがほしい<br>
+ここへ記述でいいんだろうか？</h3>
+
+<% @books.each do |book| %>
+<!--titleっていう全体の表題があって、それぞれへ表題はなし-->
+  <!--多分それぞれになるから、これはコメントアウトで
+  <p>タイトル</p>
+  カリキュラム３章では、<p>タグでタイトルと<span>タグで内容記述してる-->
+  <p><%= book.title %></p>
+  <p><%= book.body %></p>
+<% end %>
+
+
+<!--新規投稿newのビューと同様の記述-->
+<h1>New book</h1>
+<!-- form_with部分 -->
+<%= form_with model:@book do |f| %>
+  <h4>Title</h4>
+  <%= f.text_field:title %>
+
+  <h4>Body</h4>
+  <%= f.text_area:body %>
+
+  <%= f.submit 'Create BooK' %>
+
+<% end %>

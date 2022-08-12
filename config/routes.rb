@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   post 'books' => 'books#create'
 
   get 'books/new'
-  get 'books/index'
+
+  get 'books' => 'books#index'
+
   get 'books/show'
   get 'books/edit'
 
