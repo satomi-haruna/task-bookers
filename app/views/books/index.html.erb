@@ -1,39 +1,66 @@
-<h1>Books</h1>
+<head>
 
-<h3>Title</h3>
-<h3>Body</h3>
+</head>
 
-<% @books.each do |book| %>
-  <p><%= book.title %></p>
-  <p><%= book.body %></p>
+<body>
+  <header>
+    <h1>Books</h1>
+  </header>
 
-  <p><%= link_to 'Show', book_path(book.id) %></p>
-  <p><%= link_to "Edit", edit_book_path(book.id) %></p>
-  <p><%= link_to 'Destroy',book_path(book.id),method: :delete,"data-confirm" => "Are you sure?" %></p>
-<% end %>
+  <table>
+    <thead>
+      <!--見出し用thタグ。太字・中央揃えになる-->
+      <th>Title</th>
+      <th>Body</th>
+      <!--横方向にセルを結合するcolspan　たぶん3セル結合するから3　タイトル部分にはリンク3連の上に文字はなし-->
+      <th colspan="3"></th>
+    </thead>
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <!--通常文用tdタグ。左揃えになる-->
+          <td><%= book.title %></td>
+          <td><%= book.body %></td>
+          <td><%= link_to 'Show', book_path(book.id) %></td>
+          <td><%= link_to "Edit", edit_book_path(book.id) %></td>
+          <td><%= link_to 'Destroy',book_path(book.id),method: :delete,"data-confirm" => "Are you sure?" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
+  <div class="new-content">
+    <!--新規投稿-->
+    <h2>New book</h2>
+    <div class="errors">
+    <!--エラーの際メッセージを表示させて投稿画面に戻る-->
+      <% if @book.errors.any? %>
+        <%= @book.errors.count %> errors prohibited this book from being saved:
+        <ul>
+          <% @book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
 
-<!--新規投稿-->
-<h1>New book</h1>
-<!--エラーの際メッセージを表示させて投稿画面に戻る-->
-<% if @book.errors.any? %>
-  <%= @book.errors.count %> errors prohibited this book from being saved:
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+    <div class="form">
+    <!-- form_with部分 -->
+    <%= form_with model: @book,url: books_path ,method: :post do |f| %>
+      <div class="form-title">
+        <h3>Title</h3>
+        <%= f.text_field:title %>
+      </div>
+      <div class="form-body">
+        <h3>Body</h3>
+        <%= f.text_area:body %>
+      </div>
+
+      <div class="form-button">
+        <%= f.submit 'Create BooK' %>
+      </div>
+
     <% end %>
-  </ul>
-<% end %>
+    </div>
 
-
-<!-- form_with部分 -->
-<%= form_with model: @book,url: books_path ,method: :post do |f| %>
-  <h4>Title</h4>
-  <%= f.text_field:title %>
-
-  <h4>Body</h4>
-  <%= f.text_area:body %>
-
-  <%= f.submit 'Create BooK' %>
-
-<% end %>
+</body>
