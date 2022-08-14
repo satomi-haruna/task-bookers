@@ -1,7 +1,6 @@
 <h2>Bookモデルの一覧画面</h2>
 <!--一覧画面と新規投稿画面になるのでは<br>-->
-<!--newとどちらを使用するか分からないから、newと同じフォームを書いておこう</p>-->
-
+<!--新規作成、一覧をindexに表示しよう-->
 
 <h1>Books</h1>
 
@@ -13,16 +12,29 @@
 <!--カリキュラム３章では、<p>タグでタイトルと<span>タグで内容記述してる-->
   <p><%= book.title %></p>
   <p><%= book.body %></p>
-  <p><%= link_to 'Show',"/books/#{book.id}" %></p>
-  <p><%= link_to 'Edit',"/books/#{book.id}" %></p> <!--editのURLへリンクを変更する-->
-  <p><%= link_to 'Destroy',"/books/#{book.id}" %></p> <!--destroyのリンクにする-->
+
+  <p><%= link_to 'Show', book_path(book.id)%></p>
+  <p><%= link_to "Edit", edit_book_path(book.id) %></p>
+  <p><%= link_to 'Destroy',book_path(book.id),method: :delete,"data-confirm" => "Are you sure?" %></p>
+  <!--<p>タグいらないのかな？-->
 <% end %>
 
 
 <!--新規投稿newのビューと同様の記述-->
 <h1>New book</h1>
+<!--エラーの際メッセージを表示させて投稿画面に戻る設定をする-->
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this book from being saved. %>
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 <!-- form_with部分 -->
-<%= form_with model:@book do |f| %>
+<%= form_with model:@book,url: books_path ,method: :post do |f| %>
   <h4>Title</h4>
   <%= f.text_field:title %>
 

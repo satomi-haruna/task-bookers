@@ -1,10 +1,7 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<h4>Books#show</h4>
+<h4>Bookモデルの詳細画面</h4>
 
-<h2>Bookモデルの詳細画面</h2>
-<h3>Title:</h3>
-<h3>Body:</h3>
-<p>編集画面と前の画面に戻るボタンがある</p>
+<!--投稿後だと成功メッセージ表示（Book was successfully created.）＋詳細画面-->
 
 <!--詳細画面の表示-->
 <h3>Title:
@@ -15,7 +12,7 @@
 <%= @book.body %></h3>
 <!--↑字体が違う、変更が必要-->
 
-<!--編集と一覧indexにもどるリンクの追加が必要-->
-<p><%= link_to 'Edit',"/books" %></p> <!--edit画面へリンクを変更-->
+
+<p><%= link_to 'Edit', edit_book_path(@book.id) %></p>
 <p>|</p>
-<p><%= link_to 'Back',"/books" %></p>
+<p><%= link_to 'Back', books_path %></p>
