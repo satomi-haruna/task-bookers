@@ -21,7 +21,6 @@ class BooksController < ApplicationController
     # 必須項目がないと新規投稿ページを再表示するようにif式で設定
     if @book.save
     # successメッセージと詳細show画面へリダイレクト
-    # successメッセージが表示されるようにしないと
       redirect_to book_path(@book.id),notice:'Book was successfully created.'
     else
       @books = Book.all
@@ -41,17 +40,20 @@ class BooksController < ApplicationController
   end
 
   def update
+    @book = Book.find(params[:id])
     book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to book_path(book.id),notice:'Book was successfully updated.'
+    if book.update(book_params)
+      redirect_to book_path(book.id),notice:'Book was successfully updated.'
     # updateが失敗したとき、エラーを返さないといけない
-    # エラーメッセージ（〇 error prohibited this book from being saved:）
+    else
+      render :edit
+    end
   end
 
   def destroy
     book = Book.find(params[:id]) #データを１件取得
     book.destroy
-    redirect_to books_path
+    redirect_to books_path,notice:'Book was successfully destroyed.'
     # destroy後のsuccessメッセージの表示が必要
   end
 
