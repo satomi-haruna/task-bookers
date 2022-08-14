@@ -1,17 +1,21 @@
 <!--投稿後だと成功メッセージ表示＋詳細画面-->
 <!--noticeで一度のみ表示のものをコントローラで設定。viewでは呼び出し-->
-<p id="notice"><%= notice %></p>
+<body>
+    <p id="notice"><%= notice %></p>
 
 <!--詳細画面の表示-->
-<h3>Title:
-<%= @book.title %></h3>
-<!--↑Titleとデータで字体が違う、変更が必要-->
+    <div class="show-title">
+      <p><strong>Title:</strong>
+      <%= @book.title %></p>
+    </div>
+    <div class="show-body">
+      <p><strong>Body:</strong>
+      <%= @book.body %></p>
+    </div>
 
-<h3>Body:
-<%= @book.body %></h3>
-<!--↑字体が違う、変更が必要-->
-
-
-<p><%= link_to 'Edit', edit_book_path(@book.id) %></p>
-<p>|</p>
-<p><%= link_to 'Back', books_path %></p>
+    <div class="link">
+      <p><%= link_to 'Edit', edit_book_path(@book.id) %></p>
+      <p> | </p>
+      <p><%= link_to 'Back', books_path %></p>
+    </div>
+</body>

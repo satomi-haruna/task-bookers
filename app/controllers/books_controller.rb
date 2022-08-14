@@ -44,12 +44,15 @@ class BooksController < ApplicationController
     book = Book.find(params[:id])
     book.update(book_params)
     redirect_to book_path(book.id),notice:'Book was successfully updated.'
+    # updateが失敗したとき、エラーを返さないといけない
+    # エラーメッセージ（〇 error prohibited this book from being saved:）
   end
 
   def destroy
     book = Book.find(params[:id]) #データを１件取得
     book.destroy
     redirect_to books_path
+    # destroy後のsuccessメッセージの表示が必要
   end
 
   private

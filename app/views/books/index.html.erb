@@ -10,10 +10,10 @@
   <table>
     <thead>
       <!--見出し用thタグ。太字・中央揃えになる-->
-      <th>Title</th>
-      <th>Body</th>
+      <th class="index-title">Title</th>
+      <th class="index-body">Body</th>
       <!--横方向にセルを結合するcolspan　たぶん3セル結合するから3　タイトル部分にはリンク3連の上に文字はなし-->
-      <th colspan="3"></th>
+      <th class="index-link" colspan="3"></th>
     </thead>
     <tbody>
       <% @books.each do |book| %>
@@ -48,11 +48,11 @@
     <!-- form_with部分 -->
     <%= form_with model: @book,url: books_path ,method: :post do |f| %>
       <div class="form-title">
-        <h3>Title</h3>
+        <p>Title</p>
         <%= f.text_field:title %>
       </div>
       <div class="form-body">
-        <h3>Body</h3>
+        <p>Body</p>
         <%= f.text_area:body %>
       </div>
 
