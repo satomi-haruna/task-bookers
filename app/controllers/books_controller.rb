@@ -16,14 +16,16 @@ class BooksController < ApplicationController
 
   def create
     # 新規登録するためのインスタンス変数
-    book = Book.new(book_params)
+    @book = Book.new(book_params)
     # DBに保存するsavaメソッド
     # 必須項目がないと新規投稿ページを再表示するようにif式で設定
-    if book.save
+    if @book.save
     # successメッセージと詳細show画面へリダイレクト
     # successメッセージが表示されるようにしないと
-      redirect_to book_path(book.id)
+      redirect_to book_path(@book.id),notice:'Book was successfully created.'
     else
+      @books = Book.all
+      # redirect_to books_path indexアクションを通って、変数が上書きされて、エラーがなかったことになってしまうから、renderを使用する
       render :index #render:アクション名
     end
   end
@@ -41,7 +43,7 @@ class BooksController < ApplicationController
   def update
     book = Book.find(params[:id])
     book.update(book_params)
-    redirect_to book_path(book.id)
+    redirect_to book_path(book.id),notice:'Book was successfully updated.'
   end
 
   def destroy
